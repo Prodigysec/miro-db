@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Miro</title>
+		<link rel="stylesheet" href="static/css/fonts.css" />
+		<link rel="stylesheet" href="static/css/app.css" />
+		<link rel="stylesheet" href="static/css/electron-tabs.css" />
+	</head>
+	<body>
+		<div class="etabs-tabgroup">
+			<div class="etabs-tabs"></div>
+			<div class="etabs-buttons"></div>
+		</div>
+		<div class="etabs-views">
+			<div id="overlay-container" class="hidden">
+				<div class="overlay"></div>
+				<div class="message">Trying to connect...</div>
+			</div>
+			<div id="test-environment-warning" class="testEnvironmentWarning hidden">
+				Warning. Application is currently running in developer mode and may be unsafe
+			</div>
+		</div>
+		<script src="./renderer.js"></script>
+	</body>
+</html>

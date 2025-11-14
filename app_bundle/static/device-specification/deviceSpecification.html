@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="../css/fonts.css" />
+		<title>Device specification</title>
+
+		<style>
+			body {
+				font-family: OpenSans, Arial, Helvetica, sans-serif;
+				font-size: 12px;
+			}
+
+			.copy_container {
+				display: flex;
+				align-items: center;
+				margin-top: 12px;
+			}
+
+			.caption {
+				color: #767676;
+				margin-left: 12px;
+				transition: opacity 0.2s ease-in-out;
+			}
+
+			.hidden {
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="root">
+			Collecting device specifications...
+		</div>
+		<script>
+			const root = document.getElementById('root')
+			let currentSpecification = null
+
+			function onCopy() {
+				if (currentSpecification) {
+					window.miro.clipboard.writeText(JSON.stringify(currentSpecification, null, 2))
+
+					const copiedElement = document.getElementById('copied')
+					copiedElement.classList.remove('hidden')
+					setTimeout(() => {
+						copiedElement.classList.add('hidden')
+					}, 3000)
+				}
+			}
+
+			function generateSpecificationRowHTML(row) {
+				return `<tr><td>${row.label}</td><td>${row.value}</td></tr>`
+			}
+
+			function generateSpecificationRowsHTML(rows) {
+				return `<table>${rows.map(generateSpecificationRowHTML).join('')}</table>`
+			}
+
+			function generateSpecificationHTML(specification) {
+				return `
+            <div>
+                <h3>${specification.title}</h3>
+                ${generateSpecificationRowsHTML(specification.rows)}
+                <div class="copy_container">
+                    <button onclick="onCopy()">Copy specification</button>
+                    <span id="copied" class="caption hidden">copied!</span>
+                </div>
+            </div>
+        `
+			}
+
+			function setDeviceSpecification(specification) {
+				currentSpecification = specification
+				root.innerHTML = generateSpecificationHTML(specification)
+			}
+
+			function onSpecification(event, specification) {
+				setDeviceSpecification(specification)
+			}
+
+			window.miro.onSpecification(onSpecification)
+		</script>
+	</body>
+</html>
