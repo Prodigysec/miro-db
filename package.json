@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@miro-site/enterprise-workspaces": "file:artifactory_packages/@miro-site/enterprise-workspaces",
-    "@sentry/electron": "7.2.0",
+    "@sentry/electron": "7.4.0",
     "debug": "4.4.3",
     "electron-dl": "4.0.0",
     "electron-fetch": "1.9.1",
