@@ -47,7 +47,7 @@
     "electron-store": "8.2.0",
     "electron-updater": "6.6.2",
     "electron-window-state": "5.0.3",
-    "form-data": "4.0.4",
+    "form-data": "4.0.5",
     "minimist": "1.2.8",
     "node-fetch": "3.3.2",
     "offline-js": "0.7.19",
